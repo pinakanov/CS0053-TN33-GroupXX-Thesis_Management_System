@@ -20,6 +20,9 @@ vector<Thesis> theses;
 void submitProposal();
 void viewProposal();
 
+//2nd commit 
+void checkStatus();
+
 
 void studentMenu()
 {
@@ -45,6 +48,10 @@ void studentMenu()
             break;
             case 2: viewProposal();
             break;
+            //just add more cases here
+            case 6: checkStatus();
+            break;
+
         }
 
     } while(choice != 7);
@@ -107,7 +114,27 @@ void viewProposal()
         cout << "\nThesis not found.\n";
 }
 
+void checkStatus()
+{
+    string id;
 
+    cout << "\nEnter Thesis ID: ";
+    cin >> id;
+
+    bool found = false;
+
+    for(const auto& t : theses)
+    {
+        if(t.thesisID == id)
+        {
+            cout << "\nCurrent Status: " << t.status << endl;
+            found = true;
+        }
+    }
+
+    if(!found)
+        cout << "\nThesis not found.\n";
+}
 
 int main()
 {
