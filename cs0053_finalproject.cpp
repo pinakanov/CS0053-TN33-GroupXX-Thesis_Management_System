@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <iomanip>
+#include <sstream>
 
 using namespace std;
 
@@ -15,6 +16,14 @@ struct Thesis
     string comments;
 };
 vector<Thesis> theses;
+int nextThesisNumber = 1;
+
+string generateThesisID()
+{
+    ostringstream ss;
+    ss << "TH-" << setfill('0') << setw(3) << nextThesisNumber++;
+    return ss.str();
+}
 
 // first commit features.
 void submitProposal();
@@ -62,12 +71,11 @@ void submitProposal()
 {
     Thesis t;
 
-    cout << "\nEnter Thesis ID: ";
-    cin >> t.thesisID;
+    t.thesisID = generateThesisID();
 
-    cin.ignore();
+    cin.ignore();  
 
-    cout << "Student Name: ";
+    cout << "\nStudent Name: ";
     getline(cin, t.studentName);
 
     cout << "Thesis Title: ";
@@ -80,8 +88,8 @@ void submitProposal()
     t.comments = "No comments yet";
 
     theses.push_back(t);
-
-    cout << "\nProposal submitted successfully!\n";
+    cout << "\nYour Thesis ID is: " << t.thesisID << "\n";
+    cout << "\nProposal submitted successfully!";
 }
 
 void viewProposal()
